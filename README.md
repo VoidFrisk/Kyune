@@ -1,2 +1,0 @@
-# Kyune
-Bocados Bocados
