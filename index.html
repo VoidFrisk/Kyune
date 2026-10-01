@@ -1,78 +1,606 @@
-
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>KYŪNE</title>
+<title>KYŪNE · voidfrisk</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            min-height: 100vh;
-            background: #050505;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background: #f7f0e3;
+    color: #241b18;
+    min-height: 100vh;
+}
 
-        .principal {
-            text-align: center;
-        }
+/* ================= HEADER ================= */
 
-        .nombre {
-            font-size: clamp(55px, 10vw, 110px);
-            font-weight: 300;
-            letter-spacing: 18px;
-            margin-right: -18px;
-        }
+header {
+    height: 70px;
 
-        .autor {
-            margin-top: 8px;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 17px;
-            font-style: italic;
-            letter-spacing: 3px;
-            color: #999;
-        }
+    background: #8e1d22;
 
-        .linea {
-            width: 180px;
-            height: 1px;
-            background: #555;
-            margin: 30px auto;
-        }
+    border-bottom: 3px solid #c9a227;
 
-        .subtitulo {
-            color: #888;
-            font-size: 13px;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-        }
-    </style>
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+}
+
+.logo {
+    color: #f5d77a;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.menu {
+    display: flex;
+    gap: 18px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff4dc;
+
+    font-size: 15px;
+
+    padding: 7px 12px;
+
+    border: 1px solid transparent;
+
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    border-color: #c9a227;
+    color: #f5d77a;
+}
+
+/* ================= PRINCIPAL ================= */
+
+.principal {
+    width: min(1150px, 92%);
+    margin: auto;
+
+    padding: 70px 0 60px;
+}
+
+/* ================= LOGO CENTRAL ================= */
+
+.presentacion {
+    text-align: center;
+    margin-bottom: 65px;
+}
+
+.presentacion h1 {
+    color: #8e1d22;
+
+    font-size: clamp(65px, 12vw, 120px);
+
+    letter-spacing: 8px;
+
+    line-height: 1;
+}
+
+.presentacion .japones {
+    color: #c9a227;
+
+    font-size: 20px;
+
+    letter-spacing: 12px;
+
+    margin-bottom: 10px;
+}
+
+.presentacion .nombre {
+    color: #5d4b44;
+
+    font-size: 25px;
+
+    margin-top: 13px;
+}
+
+.presentacion .lema {
+    margin-top: 20px;
+
+    color: #806d64;
+
+    font-size: 17px;
+}
+
+/* ================= DECORACION ================= */
+
+.decoracion {
+    text-align: center;
+
+    color: #c9a227;
+
+    font-size: 20px;
+
+    letter-spacing: 12px;
+
+    margin: 25px 0;
+}
+
+/* ================= TITULO ================= */
+
+.explora {
+    text-align: center;
+
+    color: #8e1d22;
+
+    font-size: 30px;
+
+    margin-bottom: 25px;
+}
+
+.explora::after {
+    content: "";
+
+    display: block;
+
+    width: 70px;
+
+    height: 2px;
+
+    background: #c9a227;
+
+    margin: 10px auto 0;
+}
+
+/* ================= TARJETAS ================= */
+
+.tarjetas {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+    justify-content: center;
+
+    align-items: stretch;
+}
+
+.tarjeta {
+    width: calc((100% - 75px) / 4);
+
+    min-width: 220px;
+
+    background: #fffaf1;
+
+    border: 2px solid #b58b2a;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    text-decoration: none;
+
+    color: #241b18;
+
+    box-shadow: 5px 5px 0 rgba(142, 29, 34, 0.12);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        7px 7px 0 rgba(142, 29, 34, 0.25);
+}
+
+/* ================= IMAGEN TARJETA ================= */
+
+.tarjeta-imagen {
+    width: 100%;
+
+    height: 190px;
+
+    background: #eadbc4;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.tarjeta-imagen img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+/* ================= TARJETA TEXTO ================= */
+
+.tarjeta-contenido {
+    padding: 18px;
+
+    text-align: center;
+}
+
+.tarjeta-contenido h2 {
+    color: #8e1d22;
+
+    font-size: 23px;
+
+    margin-bottom: 8px;
+}
+
+.tarjeta-contenido p {
+    color: #806d64;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+/* ================= DETALLE DORADO ================= */
+
+.tarjeta-linea {
+    width: 35px;
+
+    height: 2px;
+
+    background: #c9a227;
+
+    margin: 10px auto;
+}
+
+/* ================= FRASE ================= */
+
+.frase {
+    margin: 65px auto 20px;
+
+    width: min(700px, 90%);
+
+    text-align: center;
+
+    color: #5d4b44;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    padding: 20px;
+
+    border-top: 1px solid #c9a227;
+    border-bottom: 1px solid #c9a227;
+}
+
+.frase strong {
+    color: #8e1d22;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    background: #241b18;
+
+    color: #f5d77a;
+
+    border-top: 2px solid #c9a227;
+
+    text-align: center;
+
+    padding: 28px;
+
+    margin-top: 35px;
+
+    font-size: 14px;
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 1000px) {
+
+    .tarjeta {
+        width: calc((100% - 25px) / 2);
+    }
+
+}
+
+/* ================= MOVIL ================= */
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 0 15px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .principal {
+        padding-top: 45px;
+    }
+
+    .presentacion {
+        margin-bottom: 45px;
+    }
+
+    .presentacion h1 {
+        font-size: 65px;
+        letter-spacing: 5px;
+    }
+
+    .tarjetas {
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .tarjeta {
+        width: min(100%, 360px);
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <main class="principal">
 
-        <h1 class="nombre">KYŪNE</h1>
+<!-- ================= HEADER ================= -->
 
-        <p class="autor">VoidFrisk</p>
+<header>
 
-        <div class="linea"></div>
+    <div class="logo">
+        KYŪNE
+    </div>
 
-        <p class="subtitulo">Próximamente</p>
+    <nav class="menu">
 
-    </main>
+        <a href="postres.html">
+            Postres
+        </a>
+
+        <a href="panaderia.html">
+            Panadería
+        </a>
+
+        <a href="pizzeria.html">
+            Pizzería
+        </a>
+
+        <a href="desahogo.html">
+            Desahogo
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ================= PRINCIPAL ================= -->
+
+<main class="principal">
+
+
+    <!-- PRESENTACION -->
+
+    <section class="presentacion">
+
+        <div class="japones">
+            九尾
+        </div>
+
+        <h1>
+            KYŪNE
+        </h1>
+
+        <div class="nombre">
+            voidfrisk
+        </div>
+
+        <p class="lema">
+            The spirit within
+        </p>
+
+    </section>
+
+
+    <div class="decoracion">
+        ✦ ◇ ✦
+    </div>
+
+
+    <!-- TITULO -->
+
+    <h2 class="explora">
+        EXPLORA
+    </h2>
+
+
+    <!-- ================= TARJETAS ================= -->
+
+    <section class="tarjetas">
+
+
+        <!-- POSTRES -->
+
+        <a
+            href="postres.html"
+            class="tarjeta"
+        >
+
+            <div class="tarjeta-imagen">
+
+                <img
+                    src="https://img-global.cpcdn.com/recipes/2bcbb9e064fee3ff/1200x630cq80/photo.jpg"
+                    alt="Postres"
+                >
+
+            </div>
+
+            <div class="tarjeta-contenido">
+
+                <h2>
+                    Postres
+                </h2>
+
+                <div class="tarjeta-linea"></div>
+
+                <p>
+                    Dulces sabores para disfrutar.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- PANADERIA -->
+
+        <a
+            href="panaderia.html"
+            class="tarjeta"
+        >
+
+            <div class="tarjeta-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=80"
+                    alt="Panadería"
+                >
+
+            </div>
+
+            <div class="tarjeta-contenido">
+
+                <h2>
+                    Panadería
+                </h2>
+
+                <div class="tarjeta-linea"></div>
+
+                <p>
+                    Panes y sabores recién hechos.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- PIZZERIA -->
+
+        <a
+            href="pizzeria.html"
+            class="tarjeta"
+        >
+
+            <div class="tarjeta-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=900&q=80"
+                    alt="Pizzería"
+                >
+
+            </div>
+
+            <div class="tarjeta-contenido">
+
+                <h2>
+                    Pizzería
+                </h2>
+
+                <div class="tarjeta-linea"></div>
+
+                <p>
+                    Pizza para compartir y disfrutar.
+                </p>
+
+            </div>
+
+        </a>
+
+
+        <!-- DESAHOGO -->
+
+        <a
+            href="desahogo.html"
+            class="tarjeta"
+        >
+
+            <div class="tarjeta-imagen">
+
+                <img
+                    src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80"
+                    alt="Desahogo"
+                >
+
+            </div>
+
+            <div class="tarjeta-contenido">
+
+                <h2>
+                    Desahogo
+                </h2>
+
+                <div class="tarjeta-linea"></div>
+
+                <p>
+                    Un espacio para expresar lo que llevas dentro.
+                </p>
+
+            </div>
+
+        </a>
+
+
+    </section>
+
+
+    <!-- FRASE -->
+
+    <div class="frase">
+
+        <strong>KYŪNE</strong> representa el espíritu,
+        la fuerza y el misterio del zorro de nueve colas.
+
+        <br>
+
+        Un espacio creado para descubrir,
+        compartir y disfrutar.
+
+    </div>
+
+
+</main>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    KYŪNE · voidfrisk
+
+</footer>
+
 
 </body>
 </html>
+
