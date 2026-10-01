@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Postres · KYŪNE</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background: #f7f0e3;
+    color: #241b18;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 70px;
+    background: #8e1d22;
+    border-bottom: 3px solid #c9a227;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 35px;
+}
+
+.logo {
+    text-decoration: none;
+    color: #f5d77a;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.volver {
+    text-decoration: none;
+    color: #fff4dc;
+    border: 1px solid #c9a227;
+    padding: 7px 15px;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.volver:hover {
+    background: #c9a227;
+    color: #241b18;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    text-align: center;
+    padding: 55px 20px 35px;
+    background: #f7f0e3;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 7vw, 70px);
+    color: #8e1d22;
+    letter-spacing: 5px;
+}
+
+.hero h1::before {
+    content: "九尾";
+    display: block;
+    font-size: 17px;
+    letter-spacing: 7px;
+    color: #c9a227;
+    margin-bottom: 5px;
+}
+
+.hero p {
+    color: #5b4942;
+    font-size: 18px;
+}
+
+/* ================= CONTENEDOR ================= */
+
+.contenedor {
+    width: min(1100px, 92%);
+    margin: auto;
+}
+
+/* ================= CONTENIDO ================= */
+
+.contenido {
+    background: #fffaf1;
+    border: 2px solid #c9a227;
+    padding: 20px 25px;
+    margin-bottom: 45px;
+    border-radius: 5px;
+}
+
+.contenido h2 {
+    color: #8e1d22;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.contenido-lista {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.contenido-lista a {
+    color: #382824;
+    text-decoration: none;
+    border-bottom: 1px solid #c9a227;
+    padding-bottom: 3px;
+}
+
+.contenido-lista a:hover {
+    color: #8e1d22;
+}
+
+/* ================= PRODUCTOS ================= */
+
+.productos-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.producto {
+    width: calc((100% - 50px) / 3);
+    min-width: 250px;
+
+    background: #fffaf1;
+    border: 2px solid #b58b2a;
+    border-radius: 6px;
+
+    padding: 12px;
+
+    box-shadow: 4px 4px 0 rgba(142, 29, 34, 0.12);
+}
+
+.titulo-producto {
+    color: #8e1d22;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #c9a227;
+}
+
+/* ================= IMAGEN ================= */
+
+.mochi-card {
+    cursor: pointer;
+}
+
+.mochi-image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+
+    display: block;
+
+    border: 1px solid #b58b2a;
+    border-radius: 4px;
+}
+
+.mochi-card-name {
+    text-align: center;
+    color: #8e1d22;
+    font-size: 21px;
+    font-weight: bold;
+    padding: 12px 5px 5px;
+}
+
+/* ================= BOTONES ================= */
+
+.opciones {
+    display: none;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.opciones.mostrar {
+    display: flex;
+}
+
+.opciones button {
+    flex: 1;
+
+    font-family: inherit;
+    font-weight: bold;
+
+    border: 1px solid #b58b2a;
+    background: #f7f0e3;
+    color: #8e1d22;
+
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.opciones button:hover {
+    background: #8e1d22;
+    color: #fff4dc;
+}
+
+/* ================= INFORMACION ================= */
+
+.informacion {
+    display: none;
+
+    margin-top: 12px;
+    padding-top: 12px;
+
+    border-top: 1px solid #c9a227;
+}
+
+.informacion.mostrar {
+    display: block;
+}
+
+.informacion h3 {
+    color: #8e1d22;
+    font-size: 18px;
+    margin-bottom: 9px;
+}
+
+/* ================= SABORES ================= */
+
+.sabores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.sabor-btn {
+    font-family: inherit;
+
+    background: transparent;
+    color: #382824;
+
+    border: 1px solid #b58b2a;
+    border-radius: 3px;
+
+    padding: 5px 8px;
+    cursor: pointer;
+}
+
+.sabor-btn:hover,
+.sabor-btn.activo {
+    background: #8e1d22;
+    color: white;
+}
+
+/* ================= DESCRIPCION ================= */
+
+.descripcion {
+    background: #f7f0e3;
+    border-left: 3px solid #c9a227;
+
+    padding: 9px;
+    margin-bottom: 10px;
+
+    font-size: 14px;
+}
+
+.ingredientes {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ================= PRECIOS ================= */
+
+.precios {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.precio-btn {
+    font-family: inherit;
+
+    background: #fffaf1;
+    color: #382824;
+
+    border: 1px solid #b58b2a;
+    border-radius: 3px;
+
+    padding: 9px;
+
+    text-align: left;
+    cursor: pointer;
+}
+
+.precio-btn:hover {
+    background: #8e1d22;
+    color: white;
+}
+
+.precio-btn strong {
+    float: right;
+}
+
+/* ================= PEDIDO DESPLEGABLE ================= */
+
+.pedido {
+    display: none;
+
+    margin-top: 15px;
+    padding: 15px;
+
+    background: #f3e6c9;
+
+    border: 2px solid #8e1d22;
+    border-radius: 4px;
+}
+
+.pedido.mostrar {
+    display: block;
+}
+
+.pedido h3 {
+    color: #8e1d22;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.pedido-dato {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 6px 0;
+
+    border-bottom: 1px dotted #b58b2a;
+
+    font-size: 14px;
+}
+
+.pedido-dato:last-of-type {
+    border-bottom: none;
+}
+
+.pedido-boton {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 10px;
+
+    font-family: inherit;
+    font-weight: bold;
+
+    background: #8e1d22;
+    color: #fff4dc;
+
+    border: 1px solid #c9a227;
+    border-radius: 3px;
+
+    cursor: pointer;
+}
+
+.pedido-boton:hover {
+    background: #6d1519;
+}
+
+/* ================= MOCHI HELADO ================= */
+
+.sin-precio {
+    text-align: center;
+    color: #806d64;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+/* ================= PROXIMAMENTE ================= */
+
+.proximamente {
+    width: calc((100% - 50px) / 3);
+    min-width: 250px;
+
+    background: #fffaf1;
+
+    border: 2px dashed #b58b2a;
+    border-radius: 6px;
+
+    padding: 12px;
+
+    box-shadow: 4px 4px 0 rgba(142, 29, 34, 0.08);
+}
+
+.proximamente-box {
+    height: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3e6c9;
+
+    border: 1px solid #c9a227;
+    border-radius: 4px;
+
+    color: #8e1d22;
+    font-size: 20px;
+    text-align: center;
+}
+
+.proximamente h2 {
+    text-align: center;
+    color: #8e1d22;
+    font-size: 22px;
+    margin: 12px 0 5px;
+}
+
+.proximamente p {
+    text-align: center;
+    color: #806d64;
+    font-size: 14px;
+}
+
+/* ================= DECORACION ZORRO ================= */
+
+.decoracion {
+    text-align: center;
+    color: #c9a227;
+    font-size: 20px;
+    letter-spacing: 10px;
+    margin: 25px 0;
+}
+
+/* ================= CONFIRMACION ================= */
+
+#confirmacion {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(36, 27, 24, 0.65);
+
+    z-index: 500;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+#confirmacion.mostrar {
+    display: flex;
+}
+
+.confirmacion-box {
+    width: min(430px, 100%);
+
+    background: #fffaf1;
+
+    border: 2px solid #c9a227;
+
+    padding: 25px;
+
+    border-radius: 5px;
+
+    box-shadow: 8px 8px 0 #8e1d22;
+}
+
+.confirmacion-box h2 {
+    color: #8e1d22;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.confirmacion-datos {
+    background: #f3e6c9;
+
+    border: 1px solid #b58b2a;
+
+    padding: 15px;
+
+    line-height: 1.8;
+
+    margin-bottom: 18px;
+}
+
+.confirmacion-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.confirmacion-botones button {
+    flex: 1;
+
+    padding: 10px;
+
+    font-family: inherit;
+    font-weight: bold;
+
+    border: 1px solid #b58b2a;
+    border-radius: 3px;
+
+    cursor: pointer;
+}
+
+.confirmar {
+    background: #8e1d22;
+    color: white;
+}
+
+.cancelar {
+    background: #f3e6c9;
+    color: #382824;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+    margin-top: 60px;
+
+    background: #241b18;
+    color: #f5d77a;
+
+    text-align: center;
+
+    padding: 25px;
+
+    border-top: 2px solid #c9a227;
+}
+
+/* ================= MOVIL ================= */
+
+@media (max-width: 850px) {
+
+    .producto,
+    .proximamente {
+        width: calc((100% - 25px) / 2);
+    }
+}
+
+@media (max-width: 600px) {
+
+    header {
+        padding: 0 15px;
+    }
+
+    .producto,
+    .proximamente {
+        width: 100%;
+    }
+
+    .productos-grid {
+        flex-direction: column;
+    }
+
+    .contenido-lista {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        KYŪNE
+    </a>
+
+    <a href="index.html" class="volver">
+        ← VOLVER
+    </a>
+
+</header>
+
+
+<section class="hero">
+
+    <h1>POSTRES</h1>
+
+    <p>
+        Postres Ricos e inspirados en satisfacer tus emociones
+    </p>
+
+</section>
+
+
+<main class="contenedor">
+
+    <div class="decoracion">
+        ✦ ◇ ✦
+    </div>
+
+
+    <!-- ================= CONTENIDO ================= -->
+
+    <section class="contenido">
+
+        <h2>CONTENIDO</h2>
+
+        <div class="contenido-lista">
+
+            <a href="#mochi-clasico">
+                Mochi Clásico
+            </a>
+
+            <a href="#mochi-helado">
+                Mochi de Helado
+            </a>
+
+            <a href="#proximamente">
+                Próximamente
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= TARJETAS ================= -->
+
+    <div class="productos-grid">
+
+
+        <!-- ================= MOCHI CLASICO ================= -->
+
+        <section
+            class="producto"
+            id="mochi-clasico"
+        >
+
+            <h2 class="titulo-producto">
+                Mochi Clásico
+            </h2>
+
+            <div
+                class="mochi-card"
+                onclick="mostrarOpciones('clasico')"
+            >
+
+                <img
+                    class="mochi-image"
+                    src="https://img-global.cpcdn.com/recipes/2bcbb9e064fee3ff/1200x630cq80/photo.jpg"
+                    alt="Mochi Clásico"
+                >
+
+                <div class="mochi-card-name">
+                    Mochi Clásico
+                </div>
+
+            </div>
+
+
+            <div
+                class="opciones"
+                id="opciones-clasico"
+            >
+
+                <button
+                    onclick="mostrarInformacion(event, 'detalles-clasico')"
+                >
+                    DETALLES
+                </button>
+
+                <button
+                    onclick="mostrarInformacion(event, 'precios-clasico')"
+                >
+                    PRECIOS
+                </button>
+
+            </div>
+
+
+            <!-- DETALLES -->
+
+            <div
+                class="informacion"
+                id="detalles-clasico"
+            >
+
+                <h3>SABORES</h3>
+
+                <div class="sabores">
+
+                    <button
+                        class="sabor-btn activo"
+                        onclick="cambiarSabor('Fresa', this)"
+                    >
+                        Fresa
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSabor('Mora', this)"
+                    >
+                        Mora
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSabor('Arándano', this)"
+                    >
+                        Arándano
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSabor('Chocolate', this)"
+                    >
+                        Chocolate
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSabor('Oreo', this)"
+                    >
+                        Oreo
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="descripcion"
+                    id="descripcion-clasico"
+                >
+                    Un sabor dulce, suave y refrescante.
+                    Un mochi con un sabor genial y delicado.
+                </div>
+
+
+                <div class="ingredientes">
+
+                    <strong>INGREDIENTES</strong><br>
+
+                    Harina de arroz, azúcar, agua
+                    y relleno de sabor.
+
+                </div>
+
+            </div>
+
+
+            <!-- PRECIOS -->
+
+            <div
+                class="informacion"
+                id="precios-clasico"
+            >
+
+                <h3>PRECIOS</h3>
+
+                <div class="precios">
+
+                    <button
+                        class="precio-btn"
+                        onclick="seleccionarPrecio('Pequeño', '$0.50')"
+                    >
+                        Pequeño
+                        <strong>$0.50</strong>
+                    </button>
+
+                    <button
+                        class="precio-btn"
+                        onclick="seleccionarPrecio('Grande', '$1.00')"
+                    >
+                        Grande
+                        <strong>$1.00</strong>
+                    </button>
+
+                    <button
+                        class="precio-btn"
+                        onclick="seleccionarPrecio('Extra grande', '$1.50')"
+                    >
+                        Extra grande
+                        <strong>$1.50</strong>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- PEDIDO DESGLOSADO -->
+
+            <div
+                class="pedido"
+                id="pedido"
+            >
+
+                <h3>
+                    PEDIR ESTE MOCHI
+                </h3>
+
+
+                <div class="pedido-dato">
+
+                    <strong>Sabor</strong>
+
+                    <span id="pedido-sabor">
+                        Fresa
+                    </span>
+
+                </div>
+
+
+                <div class="pedido-dato">
+
+                    <strong>Tamaño</strong>
+
+                    <span id="pedido-tamano">
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="pedido-dato">
+
+                    <strong>Precio</strong>
+
+                    <span id="pedido-precio">
+                        -
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="pedido-boton"
+                    onclick="abrirConfirmacion()"
+                >
+                    PEDIR POR WHATSAPP
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MOCHI HELADO ================= -->
+
+        <section
+            class="producto"
+            id="mochi-helado"
+        >
+
+            <h2 class="titulo-producto">
+                Mochi de Helado
+            </h2>
+
+
+            <div
+                class="mochi-card"
+                onclick="mostrarOpciones('helado')"
+            >
+
+                <img
+                    class="mochi-image"
+                    src="https://img-global.cpcdn.com/recipes/2bcbb9e064fee3ff/1200x630cq80/photo.jpg"
+                    alt="Mochi de Helado"
+                >
+
+                <div class="mochi-card-name">
+                    Mochi de Helado
+                </div>
+
+            </div>
+
+
+            <div
+                class="opciones"
+                id="opciones-helado"
+            >
+
+                <button
+                    onclick="mostrarInformacion(event, 'detalles-helado')"
+                >
+                    DETALLES
+                </button>
+
+            </div>
+
+
+            <div
+                class="informacion"
+                id="detalles-helado"
+            >
+
+                <h3>SABORES</h3>
+
+
+                <div class="sabores">
+
+                    <button
+                        class="sabor-btn activo"
+                        onclick="cambiarSaborHelado('Fresa', this)"
+                    >
+                        Fresa
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSaborHelado('Mora', this)"
+                    >
+                        Mora
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSaborHelado('Arándano', this)"
+                    >
+                        Arándano
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSaborHelado('Chocolate', this)"
+                    >
+                        Chocolate
+                    </button>
+
+                    <button
+                        class="sabor-btn"
+                        onclick="cambiarSaborHelado('Oreo', this)"
+                    >
+                        Oreo
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="descripcion"
+                    id="descripcion-helado"
+                >
+                    Un delicioso mochi relleno de helado,
+                    suave, frío y cremoso.
+                </div>
+
+
+                <div class="ingredientes">
+
+                    <strong>INGREDIENTES</strong><br>
+
+                    Harina de arroz, azúcar, agua
+                    y helado.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROXIMAMENTE ================= -->
+
+        <section
+            class="proximamente"
+            id="proximamente"
+        >
+
+            <div class="proximamente-box">
+                ✦
+            </div>
+
+            <h2>
+                PRÓXIMAMENTE
+            </h2>
+
+            <p>
+                Nuevos sabores y postres
+            </p>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- ================= CONFIRMACION ================= -->
+
+<div
+    id="confirmacion"
+>
+
+    <div class="confirmacion-box">
+
+        <h2>
+            ¿CONFIRMAR PEDIDO?
+        </h2>
+
+
+        <div class="confirmacion-datos">
+
+            <strong>Mochi:</strong>
+            <span id="confirm-postre">
+                Mochi Clásico
+            </span>
+
+            <br>
+
+            <strong>Sabor:</strong>
+            <span id="confirm-sabor"></span>
+
+            <br>
+
+            <strong>Tamaño:</strong>
+            <span id="confirm-tamano"></span>
+
+            <br>
+
+            <strong>Precio:</strong>
+            <span id="confirm-precio"></span>
+
+        </div>
+
+
+        <div class="confirmacion-botones">
+
+            <button
+                class="confirmar"
+                onclick="confirmarPedido()"
+            >
+                CONFIRMAR
+            </button>
+
+            <button
+                class="cancelar"
+                onclick="cerrarConfirmacion()"
+            >
+                CANCELAR
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    KYŪNE · voidfrisk
+</footer>
+
+
+<script>
+
+/* ================= DATOS ================= */
+
+let pedido = {
+    postre: "Mochi Clásico",
+    sabor: "Fresa",
+    tamano: "",
+    precio: ""
+};
+
+
+/* ================= WHATSAPP ================= */
+
+const whatsappNumero = "593998921217";
+
+
+/* ================= MOSTRAR OPCIONES ================= */
+
+function mostrarOpciones(id) {
+
+    const opciones =
+        document.getElementById("opciones-" + id);
+
+    opciones.classList.toggle("mostrar");
+}
+
+
+/* ================= MOSTRAR INFORMACION ================= */
+
+function mostrarInformacion(event, id) {
+
+    event.stopPropagation();
+
+    const informacion =
+        document.getElementById(id);
+
+    informacion.classList.toggle("mostrar");
+}
+
+
+/* ================= CAMBIAR SABOR ================= */
+
+function cambiarSabor(sabor, boton) {
+
+    pedido.sabor = sabor;
+
+    document.getElementById(
+        "descripcion-clasico"
+    ).textContent = obtenerDescripcion(sabor);
+
+
+    const botones =
+        boton.parentElement.querySelectorAll(".sabor-btn");
+
+
+    botones.forEach(btn => {
+        btn.classList.remove("activo");
+    });
+
+
+    boton.classList.add("activo");
+
+
+    actualizarPedido();
+}
+
+
+/* ================= SABOR HELADO ================= */
+
+function cambiarSaborHelado(sabor, boton) {
+
+    document.getElementById(
+        "descripcion-helado"
+    ).textContent =
+        obtenerDescripcionHelado(sabor);
+
+
+    const botones =
+        boton.parentElement.querySelectorAll(".sabor-btn");
+
+
+    botones.forEach(btn => {
+        btn.classList.remove("activo");
+    });
+
+
+    boton.classList.add("activo");
+}
+
+
+/* ================= DESCRIPCIONES ================= */
+
+function obtenerDescripcion(sabor) {
+
+    const descripciones = {
+
+        "Fresa":
+        "Un sabor dulce, suave y refrescante. Un mochi con un sabor genial y delicado.",
+
+        "Mora":
+        "Un sabor dulce con un toque ligeramente ácido y muy agradable.",
+
+        "Arándano":
+        "Un sabor suave, dulce y ligeramente ácido, perfecto para un mochi.",
+
+        "Chocolate":
+        "Un sabor intenso, dulce y cremoso para los amantes del chocolate.",
+
+        "Oreo":
+        "Una combinación cremosa y dulce con el delicioso sabor de Oreo."
+
+    };
+
+    return descripciones[sabor];
+}
+
+
+function obtenerDescripcionHelado(sabor) {
+
+    const descripciones = {
+
+        "Fresa":
+        "Helado de fresa dentro de una suave capa de mochi.",
+
+        "Mora":
+        "Helado de mora con un sabor dulce y refrescante.",
+
+        "Arándano":
+        "Helado de arándano con un toque dulce y ligeramente ácido.",
+
+        "Chocolate":
+        "Helado de chocolate cremoso dentro del mochi.",
+
+        "Oreo":
+        "Helado cremoso combinado con el delicioso sabor de Oreo."
+
+    };
+
+    return descripciones[sabor];
+}
+
+
+/* ================= SELECCIONAR PRECIO ================= */
+
+function seleccionarPrecio(tamano, precio) {
+
+    pedido.tamano = tamano;
+    pedido.precio = precio;
+
+    actualizarPedido();
+
+
+    const pedidoBox =
+        document.getElementById("pedido");
+
+
+    pedidoBox.classList.add("mostrar");
+
+
+    pedidoBox.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+    });
+}
+
+
+/* ================= ACTUALIZAR PEDIDO ================= */
+
+function actualizarPedido() {
+
+    document.getElementById(
+        "pedido-sabor"
+    ).textContent = pedido.sabor;
+
+
+    document.getElementById(
+        "pedido-tamano"
+    ).textContent =
+        pedido.tamano || "-";
+
+
+    document.getElementById(
+        "pedido-precio"
+    ).textContent =
+        pedido.precio || "-";
+}
+
+
+/* ================= CONFIRMACION ================= */
+
+function abrirConfirmacion() {
+
+    if (!pedido.tamano || !pedido.precio) {
+
+        alert(
+            "Primero selecciona un tamaño y un precio."
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "confirm-sabor"
+    ).textContent =
+        pedido.sabor;
+
+
+    document.getElementById(
+        "confirm-tamano"
+    ).textContent =
+        pedido.tamano;
+
+
+    document.getElementById(
+        "confirm-precio"
+    ).textContent =
+        pedido.precio;
+
+
+    document.getElementById(
+        "confirmacion"
+    ).classList.add("mostrar");
+}
+
+
+/* ================= CERRAR ================= */
+
+function cerrarConfirmacion() {
+
+    document.getElementById(
+        "confirmacion"
+    ).classList.remove("mostrar");
+}
+
+
+/* ================= WHATSAPP ================= */
+
+function confirmarPedido() {
+
+    const mensaje =
+`Hola, quiero realizar un pedido en KYŪNE.
+
+Mochi: ${pedido.postre}
+Sabor: ${pedido.sabor}
+Tamaño: ${pedido.tamano}
+Precio: ${pedido.precio}
+
+¿Podrían confirmar mi pedido?`;
+
+
+    const url =
+        "https://wa.me/" +
+        whatsappNumero +
+        "?text=" +
+        encodeURIComponent(mensaje);
+
+
+    window.open(url, "_blank");
+
+
+    cerrarConfirmacion();
+}
+
+</script>
+
+</body>
+</html>
