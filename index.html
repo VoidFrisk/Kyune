@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#21130f">
-
-  <title>Kyune Foxy Spirits | Un mundo de dulces posibilidades</title>
+  <title>Kyune Foxy Spirits | Postres y Pan</title>
 
   <style>
     :root {
@@ -29,22 +28,12 @@
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(
-          ellipse at 15% 10%,
-          rgba(255,255,255,.45),
-          transparent 42%
-        ),
-        repeating-linear-gradient(
-          135deg,
-          #f6dfc1 0 12px,
-          #f2d5b1 12px 24px
-        );
-
+        radial-gradient(ellipse at 15% 10%, rgba(255,255,255,.45), transparent 42%),
+        repeating-linear-gradient(135deg, #f6dfc1 0 12px, #f2d5b1 12px 24px);
       font-family: Georgia, "Times New Roman", serif;
     }
 
-    /* PORTADA PRINCIPAL */
-
+    /* PORTADA */
     .poster {
       width: min(100%, 1229px);
       margin: 0 auto;
@@ -60,8 +49,7 @@
       height: auto;
     }
 
-    /* BOTONES TRANSPARENTES */
-
+    /* BOTONES DE NAVEGACIÓN */
     .hotspot {
       position: absolute;
       display: block;
@@ -77,8 +65,6 @@
       outline: 3px solid #ffcf73;
       background: rgba(255, 210, 120, .18);
     }
-
-    /* POSICIÓN DE LOS BOTONES */
 
     .home-link {
       left: 68.2%;
@@ -108,12 +94,11 @@
       height: 14.5%;
     }
 
-    /* SECCIÓN POSTRES */
-
-    .contents {
+    /* SECCIÓN PRINCIPAL */
+    .categories {
       width: min(100% - 32px, 1120px);
       margin: 0 auto;
-      padding: 54px 0 76px;
+      padding: 58px 0 76px;
       text-align: center;
     }
 
@@ -138,7 +123,6 @@
       width: min(340px, 70%);
       height: 2px;
       margin: 22px auto 34px;
-
       background: linear-gradient(
         90deg,
         transparent,
@@ -147,7 +131,6 @@
         var(--gold),
         transparent
       );
-
       position: relative;
     }
 
@@ -165,13 +148,99 @@
 
     .intro {
       max-width: 660px;
-      margin: 0 auto 34px;
+      margin: 0 auto 36px;
       font-size: 1.08rem;
       line-height: 1.7;
     }
 
-    /* PIE DE PÁGINA */
+    /* TARJETAS DE POSTRES Y PAN */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
+    .category-card {
+      display: block;
+      overflow: hidden;
+      border: 3px solid #a93625;
+      border-radius: 24px;
+      background: #fff0d9;
+      box-shadow: 0 9px 22px rgba(83, 38, 17, .18);
+      text-decoration: none;
+      color: var(--ink);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 28px rgba(83, 38, 17, .25);
+    }
+
+    .category-card:focus-visible {
+      outline: 4px solid #e4a34e;
+      outline-offset: 5px;
+    }
+
+    .category-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1.58 / 1;
+      object-fit: cover;
+    }
+
+    .category-name {
+      display: block;
+      padding: 17px 12px 19px;
+      color: #fff0d9;
+      background: #a9271e;
+      border-top: 3px solid #e3a34c;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: bold;
+      letter-spacing: .04em;
+    }
+
+    .category-hint {
+      display: block;
+      margin-top: 5px;
+      font-size: .85rem;
+      font-weight: normal;
+      letter-spacing: .02em;
+      opacity: .9;
+    }
+
+    /* SECCIONES DE DESTINO */
+    .destinations {
+      max-width: 900px;
+      margin: 54px auto 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      text-align: left;
+    }
+
+    .destination {
+      padding: 24px;
+      border: 1px solid #d18a48;
+      border-radius: 16px;
+      background: rgba(255, 244, 224, .88);
+      scroll-margin-top: 24px;
+    }
+
+    .destination h2 {
+      margin: 0 0 8px;
+      color: var(--red);
+      font-size: 1.7rem;
+    }
+
+    .destination p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* PIE DE PÁGINA */
     footer {
       padding: 24px 16px;
       color: #fce8ce;
@@ -181,24 +250,31 @@
       letter-spacing: .04em;
     }
 
-    /* ADAPTACIÓN PARA CELULARES */
-
+    /* RESPONSIVE */
     @media (max-width: 720px) {
-
-      .contents {
-        padding-top: 38px;
+      .categories {
+        padding: 38px 0 54px;
       }
 
-    }
+      .category-grid,
+      .destinations {
+        grid-template-columns: 1fr;
+      }
 
-    /* ACCESIBILIDAD */
+      .category-grid {
+        gap: 22px;
+      }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
       }
-    }
 
+      .category-card {
+        transition: none;
+      }
+    }
   </style>
 </head>
 
@@ -206,92 +282,133 @@
 
   <main>
 
-    <!-- PORTADA -->
-
-    <section
-      class="poster"
-      id="inicio"
-      aria-label="Portada de Kyune Foxy Spirits"
-    >
+    <!-- PORTADA ORIGINAL -->
+    <section class="poster" id="inicio">
 
       <img
         src="kyune_foxy_spirits.png"
-        alt="Kyune Foxy Spirits: zorros kitsune, flores de cerezo, faroles y templos japoneses."
+        alt="Kyune Foxy Spirits: zorros kitsune, flores de cerezo y templos japoneses."
       >
 
-      <!-- BOTÓN INICIO -->
-
-      <a
-        class="hotspot home-link"
-        href="#inicio"
-        aria-label="Ir al inicio"
-      >
+      <a class="hotspot home-link"
+         href="#inicio"
+         aria-label="Ir al inicio">
         Inicio
       </a>
 
-      <!-- BOTÓN CONTENIDOS -->
-
-      <a
-        class="hotspot contents-link"
-        href="#postres"
-        aria-label="Bajar a postres"
-      >
+      <a class="hotspot contents-link"
+         href="#categorias"
+         aria-label="Bajar a Postres y Pan">
         Contenidos
       </a>
 
-      <!-- FLECHA IZQUIERDA -->
-
-      <a
-        class="hotspot down-left"
-        href="#postres"
-        aria-label="Bajar a postres"
-      >
-        Bajar a postres
+      <a class="hotspot down-left"
+         href="#categorias"
+         aria-label="Bajar a Postres y Pan">
+        Bajar
       </a>
 
-      <!-- FLECHA DERECHA -->
-
-      <a
-        class="hotspot down-right"
-        href="#postres"
-        aria-label="Bajar a postres"
-      >
-        Bajar a postres
+      <a class="hotspot down-right"
+         href="#categorias"
+         aria-label="Bajar a Postres y Pan">
+        Bajar
       </a>
 
     </section>
 
-    <!-- ÚNICA SECCIÓN INFERIOR: POSTRES -->
-
-    <section
-      class="contents"
-      id="postres"
-    >
+    <!-- SECCIÓN POSTRES Y PAN -->
+    <section class="categories" id="categorias">
 
       <div class="eyebrow">
         Kyune Foxy Spirits
       </div>
 
-      <h1>
-        Postres
-      </h1>
+      <h1>Postres y Pan</h1>
 
-      <div
-        class="ornament"
-        aria-hidden="true"
-      ></div>
+      <div class="ornament"></div>
 
       <p class="intro">
-        Descubre nuestros postres y encuentra
-        tu próximo antojo favorito.
+        Elige una categoría y descubre nuestras delicias.
+        Haz clic en una de las imágenes para ir directamente
+        a su sección.
       </p>
+
+      <!-- TARJETAS -->
+      <div class="category-grid">
+
+        <!-- POSTRES -->
+        <a class="category-card"
+           href="#postres"
+           aria-label="Ir a la sección Postres">
+
+          <img
+            src="postres_foto.jpg"
+            alt="Pastel con fresas, cupcake y mochi japonés"
+          >
+
+          <span class="category-name">
+            ✿ Postres ✿
+            <span class="category-hint">
+              Ver sección de postres
+            </span>
+          </span>
+
+        </a>
+
+        <!-- PAN -->
+        <a class="category-card"
+           href="#pan"
+           aria-label="Ir a la sección Pan">
+
+          <img
+            src="pan_foto.jpg"
+            alt="Variedad de panes y croissants recién horneados"
+          >
+
+          <span class="category-name">
+            ✿ Pan ✿
+            <span class="category-hint">
+              Ver sección de pan
+            </span>
+          </span>
+
+        </a>
+
+      </div>
+
+      <!-- DESTINOS -->
+      <div class="destinations">
+
+        <section class="destination" id="postres">
+
+          <h2>Postres</h2>
+
+          <p>
+            Bienvenido a nuestra sección de postres.
+            Aquí podrás descubrir nuestras opciones dulces.
+          </p>
+
+        </section>
+
+        <section class="destination" id="pan">
+
+          <h2>Pan</h2>
+
+          <p>
+            Bienvenido a nuestra sección de pan.
+            Aquí podrás descubrir nuestras variedades
+            recién horneadas.
+          </p>
+
+        </section>
+
+      </div>
 
     </section>
 
   </main>
 
   <!-- PIE DE PÁGINA -->
-
   <footer>
     ✦ Kyune Foxy Spirits · Un mundo de dulces posibilidades ✦
   </footer>
